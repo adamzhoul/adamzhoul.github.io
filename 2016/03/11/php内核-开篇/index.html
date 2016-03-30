@@ -4,42 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>CModule类 | 就是路过</title>
+  <title>php内核-开篇 | 就是路过</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CModule.php 
-
-&amp;#x6210;&amp;#x5458;&amp;#x53D8;&amp;#x91CF;&amp;#xFF1A;
-1. $preload=array(); 
-2. $behaviors=array();
-3. $_modules=array(); 
-4. $_moduleConfig=array();
-5. $_components=array();
-6. $_componentConfig=arra">
+  <meta name="description">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CModule类">
-<meta property="og:url" content="http://yoursite.com/2016/03/06/CModule类/index.html">
+<meta property="og:title" content="php内核-开篇">
+<meta property="og:url" content="http://yoursite.com/2016/03/11/php内核-开篇/index.html">
 <meta property="og:site_name" content="就是路过">
-<meta property="og:description" content="CModule.php 
-
-&amp;#x6210;&amp;#x5458;&amp;#x53D8;&amp;#x91CF;&amp;#xFF1A;
-1. $preload=array(); 
-2. $behaviors=array();
-3. $_modules=array(); 
-4. $_moduleConfig=array();
-5. $_components=array();
-6. $_componentConfig=arra">
-<meta property="og:updated_time" content="2016-03-05T12:53:44.000Z">
+<meta property="og:description">
+<meta property="og:updated_time" content="2016-03-10T15:30:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CModule类">
-<meta name="twitter:description" content="CModule.php 
-
-&amp;#x6210;&amp;#x5458;&amp;#x53D8;&amp;#x91CF;&amp;#xFF1A;
-1. $preload=array(); 
-2. $behaviors=array();
-3. $_modules=array(); 
-4. $_moduleConfig=array();
-5. $_components=array();
-6. $_componentConfig=arra">
+<meta name="twitter:title" content="php内核-开篇">
+<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="就是路过" type="application/atom+xml">
   
@@ -211,11 +187,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-CModule类" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-php内核-开篇" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/06/CModule类/" class="article-date">
-  	<time datetime="2016-03-05T20:35:52.000Z" itemprop="datePublished">2016-03-05</time>
+      <a href="/2016/03/11/php内核-开篇/" class="article-date">
+  	<time datetime="2016-03-10T23:30:12.000Z" itemprop="datePublished">2016-03-10</time>
 </a>
     </div>
   
@@ -228,7 +204,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      CModule类
+      php内核-开篇
     </h1>
   
 
@@ -237,7 +213,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yii/">yii</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
 	</div>
 
         
@@ -248,21 +224,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4>CModule.php </h4>
-
-<p>&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF1A;</p>
-<pre><code>1. $preload=array(); 
-2. $behaviors=array();
-3. $_modules=array(); 
-4. $_moduleConfig=array();
-5. $_components=array();
-6. $_componentConfig=array();
-</code></pre><a id="more"></a>
-<p>&#x6210;&#x5458;&#x51FD;&#x6570;&#xFF1A;</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setComponents</span><span class="params">(<span class="variable">$components</span>,<span class="variable">$merge</span>=true)</span></span><br><span class="line"></span>{</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$components</span> <span class="keyword">as</span> <span class="variable">$id</span>=&gt;<span class="variable">$component</span>)</span><br><span class="line">       {</span><br><span class="line">           <span class="keyword">if</span>(<span class="variable">$component</span> <span class="keyword">instanceof</span> IApplicationComponent)</span><br><span class="line">               <span class="variable">$this</span>-&gt;setComponent(<span class="variable">$id</span>,<span class="variable">$component</span>);</span><br><span class="line">           <span class="comment">//&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x57FA;&#x672C;&#x5C31;&#x8C03;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x5206;&#x652F;&#x3002;</span></span><br><span class="line">           <span class="comment">//&#x4F1A;&#x6709;merge&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x5728;&#x4E0E;yii&#x6CE8;&#x518C;&#x6838;&#x5FC3;&#x7EC4;&#x4EF6;&#x548C;&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x914D;&#x7F6E;&#x4E2D;&#x53EF;&#x80FD;&#x6709;&#x91CD;&#x53E0;&#x7684;&#x7EC4;&#x4EF6;&#xFF0C;&#x8FD9;&#x91CC;&#x628A;&#x4E24;&#x4E2A;&#x914D;&#x7F6E;&#x7ED9;merge&#x4E00;&#x4E0B;&#xFF0C;&#x53CD;&#x6B63;&#x8FD9;&#x91CC;&#x662F;&#x653E;&#x5230;&#x6570;&#x7EC4;&#x4E2D;&#x53BB;&#xFF0C;&#x53EA;&#x6709;&#x5728;getComponent&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x624D;&#x4F1A;&#x65B0;&#x5EFA;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x8C03;&#x7528;init&#x521D;&#x59CB;&#x5316;&#x65B9;&#x6CD5;&#x3002;</span></span><br><span class="line">           <span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$this</span>-&gt;_componentConfig[<span class="variable">$id</span>]) &amp;&amp; <span class="variable">$merge</span>)</span><br><span class="line">               <span class="variable">$this</span>-&gt;_componentConfig[<span class="variable">$id</span>]=CMap::mergeArray(<span class="variable">$this</span>-&gt;_componentConfig[<span class="variable">$id</span>],<span class="variable">$component</span>);</span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">               <span class="variable">$this</span>-&gt;_componentConfig[<span class="variable">$id</span>]=<span class="variable">$component</span>;</span><br><span class="line">       }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>&#x5B58;&#x5728;&#x7236;&#x7C7B;CComponent&#x4E2D;&#x7684;&#x9B54;&#x672F;&#x65B9;&#x6CD5;</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//&#x5728;&#x521D;&#x59CB;&#x5316;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x975E;&#x4E8B;&#x4EF6;&#x65B9;&#x6CD5;&#xFF0C;&#x57FA;&#x672C;&#x4E0A;&#x5C31;&#x53EA;&#x8FD0;&#x884C;&#x5230;&#x4E86;&#x8FD9;&#x4E9B;&#x4EE3;&#x7801;&#x3002;</span></span><br><span class="line"><span class="comment">//&#x4E8B;&#x4EF6;&#x7684;&#x8BDD;&#x4F1A;&#x5728;&#x8FD9;&#x91CC;&#x653E;&#x5230;_m&#x6570;&#x7EC4;&#x4E2D;&#x3002;</span></span><br><span class="line">	    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__get</span><span class="params">(<span class="variable">$name</span>)</span></span><br><span class="line">    </span>{</span><br><span class="line">        <span class="variable">$getter</span>=<span class="string">&apos;get&apos;</span>.<span class="variable">$name</span>;</span><br><span class="line">        <span class="keyword">if</span>(method_exists(<span class="variable">$this</span>,<span class="variable">$getter</span>))</span><br><span class="line">            <span class="keyword">return</span> <span class="variable">$this</span>-&gt;<span class="variable">$getter</span>();</span><br><span class="line">            ...</span><br><span class="line">            }</span><br></pre></td></tr></table></figure>
-
+        
       
     </div>
     
@@ -271,18 +233,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/03/11/php内核-开篇/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/03/31/php-变量结构/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          php内核-开篇
+          php-变量结构
         
       </div>
     </a>
   
   
-    <a href="/2016/03/06/CApplication类/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CApplication类</div>
+    <a href="/2016/03/06/CModule类/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CModule类</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -317,7 +279,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="CModule类" data-title="CModule类" data-url="http://yoursite.com/2016/03/06/CModule类/"></div>
+	<div class="ds-thread" data-thread-key="php内核-开篇" data-title="php内核-开篇" data-url="http://yoursite.com/2016/03/11/php内核-开篇/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
