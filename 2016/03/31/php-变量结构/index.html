@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>php-变量结构 | 就是路过</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;#x6574;&amp;#x4F53;&amp;#x7ED3;&amp;#x6784;&amp;#xFF1A;_zval_struct 
+
+php&amp;#x4F5C;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5F31;&amp;#x7C7B;&amp;#x578B;&amp;#x8BED;&amp;#x8A00;&amp;#x3002;&amp;#x901A;&amp;#x8FC7;&amp;#x4E00;&amp;#x4E2A;&amp;#x901A;&amp;#x7528;&amp;#x7684;&amp;#x657">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php-变量结构">
+<meta property="og:url" content="http://yoursite.com/2016/03/31/php-变量结构/index.html">
+<meta property="og:site_name" content="就是路过">
+<meta property="og:description" content="&amp;#x6574;&amp;#x4F53;&amp;#x7ED3;&amp;#x6784;&amp;#xFF1A;_zval_struct 
+
+php&amp;#x4F5C;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5F31;&amp;#x7C7B;&amp;#x578B;&amp;#x8BED;&amp;#x8A00;&amp;#x3002;&amp;#x901A;&amp;#x8FC7;&amp;#x4E00;&amp;#x4E2A;&amp;#x901A;&amp;#x7528;&amp;#x7684;&amp;#x657">
+<meta property="og:image" content="http://yoursite.com/2016/03/31/php-变量结构/hashInsertRule.png">
+<meta property="og:updated_time" content="2016-03-30T15:19:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php-变量结构">
+<meta name="twitter:description" content="&amp;#x6574;&amp;#x4F53;&amp;#x7ED3;&amp;#x6784;&amp;#xFF1A;_zval_struct 
+
+php&amp;#x4F5C;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5F31;&amp;#x7C7B;&amp;#x578B;&amp;#x8BED;&amp;#x8A00;&amp;#x3002;&amp;#x901A;&amp;#x8FC7;&amp;#x4E00;&amp;#x4E2A;&amp;#x901A;&amp;#x7528;&amp;#x7684;&amp;#x657">
+  
+    <link rel="alternative" href="/atom.xml" title="就是路过" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="null" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">过路人</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/yii/" style="font-size: 20px;">yii</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://toutiao.io">开发者头条</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">过路人</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">过路人</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="null" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">过路人</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-php-变量结构" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/31/php-变量结构/" class="article-date">
+  	<time datetime="2016-03-30T22:10:53.000Z" itemprop="datePublished">2016-03-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      php-变量结构
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2>&#x6574;&#x4F53;&#x7ED3;&#x6784;&#xFF1A;_zval_struct </h2>
+
+<p>php&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x5F31;&#x7C7B;&#x578B;&#x8BED;&#x8A00;&#x3002;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x901A;&#x7528;&#x7684;&#x6570;&#x636E;&#x683C;&#x5F0F;&#x5B58;&#x50A8;&#x6240;&#x6709;&#x53D8;&#x91CF;&#x3002;</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _zval_struct {</span><br><span class="line">	z_value value;					<span class="comment">//&#x5B58;&#x50A8;&#x771F;&#x5B9E;&#x7684;&#x503C;</span></span><br><span class="line">	zend_unit ref_count__gc;		<span class="comment">//&#x5F15;&#x7528;&#x8BA1;&#x6570;</span></span><br><span class="line">	zend_uchar type;				<span class="comment">//&#x7C7B;&#x578B;</span></span><br><span class="line">	zend_uchar is_ref__gc;  		<span class="comment">//&#x662F;&#x5426;&#x88AB;&#x5F15;&#x7528;,0&#x3001;1</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x5728;php5.3 &#x5F15;&#x5165;&#x65B0;&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x4E4B;&#x540E;&#xFF0C;&#x53D8;&#x91CF;&#x540D;&#x4FEE;&#x6539;&#x4E3A;&#xFF1A;</p>
+<pre><code>refcount =&gt; ref_count__gc
+is__ref  =&gt; is_ref__gc
+</code></pre><a id="more"></a>
+<p>&#x53D8;&#x91CF;&#x7684;&#x7C7B;&#x578B;&#x5305;&#x62EC;&#xFF1A;<br>IS_NULL&#x3001;IS_BOOL&#x3001; IS_LONG&#x3001;IS_DOUBLE&#x3001;IS_STRING&#x3001;IS_ARRAY&#x3001;IS_OBJECT&#x548C;IS_RESOURCE &#x7B49;</p>
+<p>&#x4E0A;&#x9762;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x57FA;&#x672C;&#x4E0A;&#x7ED9;&#x51FA;&#x4E86;&#x53D8;&#x91CF;&#x7684;&#x9876;&#x7EA7;&#x7ED3;&#x6784;&#xFF0C;&#x7528;&#x4E8E;&#x8BED;&#x8A00;&#x5C42;&#x9762;&#x3002;&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x5177;&#x4F53;&#x770B;&#x770B;&#x5185;&#x90E8;&#x7684;&#x4E00;&#x4E9B;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x3002;</p>
+<h2>&#x53D8;&#x91CF;&#x503C;&#x7684;&#x5B58;&#x50A8;&#xFF1A;z_value </h2>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">union</span> _z_value</span><br><span class="line">{</span><br><span class="line">	<span class="keyword">long</span> lval;</span><br><span class="line">	<span class="keyword">double</span> dval;</span><br><span class="line">	<span class="keyword">struct</span> {</span><br><span class="line">		<span class="keyword">char</span> *val; 		<span class="comment">//c&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4EE5;\0&#x7ED3;&#x5C3E;</span></span><br><span class="line">		<span class="keyword">int</span> len;			<span class="comment">//&#x5B58;&#x50A8;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x957F;&#x5EA6;</span></span><br><span class="line">	}str;</span><br><span class="line">	HashTable *ht;			<span class="comment">//&#x54C8;&#x5E0C;&#xFF0C;&#x5B58;&#x50A8;&#x6570;&#x7EC4;</span></span><br><span class="line">	zend_object_value obj;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x663E;&#x7136;&#xFF0C;&#x8FD9;&#x91CC;&#x7528;union&#x8FD9;&#x79CD;&#x7ED3;&#x6784;&#x662F;&#x4E3A;&#x4E86;&#x8282;&#x7701;&#x7A7A;&#x95F4;&#x3002;&#x8FD9;&#x91CC;&#x5305;&#x542B;&#x7684;&#x7C7B;&#x578B;&#x5C31;&#x6709;&#xFF1A;&#x957F;&#x6574;&#x5F62;&#x3001;double&#x7C7B;&#x578B;&#x3001;&#x5B57;&#x7B26;&#x4E32;&#x7C7B;&#x578B;&#x3001;hash&#x7C7B;&#x578B;&#xFF08;&#x6570;&#x7EC4;&#xFF09;&#x3001;&#x7C7B;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;hashtable&#x7C7B;&#x578B;&#x548C;&#x7C7B;&#x7C7B;&#x578B;&#xFF0C;&#x53C8;&#x6709;&#x81EA;&#x5DF1;&#x4E13;&#x95E8;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x8D1F;&#x8D23;&#x3002;</p>
+<p>1&#x3001;PHP&#x7684;&#x54C8;&#x5E0C;&#x8868;&#x5B9E;&#x73B0;&#x4E2D;&#x4F7F;&#x7528;&#x4E86;&#x4E24;&#x4E2A;&#x6570;&#x636E;&#x7ED3;&#x6784;HashTable&#x548C;Bucket&#x3002;<br>2&#x3001;&#x7C7B;&#x5BF9;&#x8C61;&#x4FDD;&#x5B58;&#x65B9;&#x5F0F;</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">typedef</span> <span class="keyword">struct</span> _zend_object_value { </span><br><span class="line">		zend_object_handle handle; <span class="comment">//unsigned int&#x7C7B;&#x578B;,EG(objects_store).object_buckets&#x7684;&#x7D22;&#x5F15; </span></span><br><span class="line">		zend_object_handlers *handlers;} zend_object_value;</span><br></pre></td></tr></table></figure>
+<p>PHP&#x7684;&#x5BF9;&#x8C61;&#x53EA;&#x6709;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x624D;&#x4F1A;&#x88AB;&#x521B;&#x5EFA;,EG&#x5B8F;,&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x7ED3;&#x6784;&#x4F53;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x5728;&#x8FD0;&#x884C; &#x65F6;&#x7684;&#x6570;&#x636E;&#x3002; &#x5176;&#x4E2D;&#x5C31;&#x5305;&#x62EC;&#x4E86;&#x7528;&#x6765;&#x4FDD;&#x5B58;&#x6240;&#x6709;&#x88AB;&#x521B;&#x5EFA;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x5BF9;&#x8C61;&#x6C60;,EG(objects_store),&#x800C;object&#x5BF9;&#x8C61;&#x503C;&#x5185;&#x5BB9; &#x7684;zend_object_handle&#x57DF;&#x5C31;&#x662F;&#x5F53;&#x524D; &#x5BF9;&#x8C61;&#x5728;&#x5BF9;&#x8C61;&#x6C60;&#x4E2D;&#x6240;&#x5728;&#x7684;&#x7D22;&#x5F15;,handlers&#x5B57;&#x6BB5;&#x5219;&#x662F;&#x5C06;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x65F6;&#x7684;&#x5904; &#x7406;&#x51FD;&#x6570;&#x4FDD;&#x5B58;&#x8D77;&#x6765;&#x3002; &#x8FD9;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x53CA;&#x5BF9;&#x8C61;&#x76F8;&#x5173;&#x7684;&#x7C7B;&#x7684;&#x7ED3;&#x6784;_zend_class_entry&#x3002;</p>
+<p></p><h2>hash&#x7684;&#x5B9E;&#x73B0;</h2><br>hash&#x7684;&#x5B9E;&#x73B0;&#x9700;&#x8981;&#x89E3;&#x51B3;&#x4E09;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;<p></p>
+<pre><code>1. &#x5B9E;&#x73B0;&#x54C8;&#x5E0C;&#x51FD;&#x6570;
+2. &#x51B2;&#x7A81;&#x7684;&#x89E3;&#x51B3;
+3. &#x64CD;&#x4F5C;&#x63A5;&#x53E3;&#x7684;&#x5B9E;&#x73B0;
+</code></pre><p>hash&#x51FD;&#x6570;&#x5F88;&#x591A;&#xFF0C;&#x8FD9;&#x91CC;&#x6682;&#x4E0D;&#x8BA8;&#x8BBA;&#xFF1B;<br>&#x51B2;&#x7A81;&#x7684;&#x89E3;&#x51B3;&#xFF0C;&#x57FA;&#x672C;&#x5C31;&#x662F;&#x94FE;&#x8868;&#x6CD5;&#x6216;&#x8005;&#x5F00;&#x653E;&#x5BFB;&#x5740;&#x6CD5;&#xFF1B;<br>&#x63A5;&#x53E3;&#x57FA;&#x672C;&#x5C31;&#x662F;&#x589E;&#x5220;&#x6539;&#x67E5;&#x3002;</p>
+<p>&#x6CE8;&#xFF1A;PHP&#x4E2D;&#x7684;&#x54C8;&#x5E0C;&#x8868;&#x5B9E;&#x73B0;&#x5728;Zend/zend_hash.c&#x3002;</p>
+<p>hashtable&#x7ED3;&#x6784;&#x4F53;&#x5982;&#x4E0B;&#xFF1A;</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _hashtable{</span><br><span class="line">	uint nTableSize;				<span class="comment">//hash bucket&#x7684;&#x5927;&#x5C0F;&#xFF0C;2&#x7684;n&#x6B21;&#x65B9;</span></span><br><span class="line">	uint nTableMask;				<span class="comment">//&#x63A9;&#x7801;&#xFF0C;2&#x7684;n&#x6B21;&#x65B9;&#x51CF;1&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x505A;&#x4E0E;&#x64CD;&#x4F5C;</span></span><br><span class="line">	uint nNumberOfElements; 	<span class="comment">//hash Bucket&#x4E2D;&#x5F53;&#x524D;&#x5B58;&#x5728;&#x7684;&#x5143;&#x7D20;&#x4E2A;&#x6570;,count()&#x51FD;&#x6570;&#x4F1A;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x6B64;&#x503C;</span></span><br><span class="line">	ulong nNextFreeElement;    <span class="comment">//&#x4E0B;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x7D22;&#x5F15;&#x7684;&#x4F4D;&#x7F6E;</span></span><br><span class="line">	</span><br><span class="line">	Bucket *pInternalPointer; 	<span class="comment">//&#x5F53;&#x524D;&#x904D;&#x5386;&#x7684;&#x6307;&#x9488;(foreach&#x6BD4;for&#x5FEB;&#x7684;&#x539F;&#x56E0;&#x4E4B;&#x4E00;)</span></span><br><span class="line">	Bucket *pListHead;			<span class="comment">//&#x50A8;&#x6570;&#x7EC4;&#x5934;&#x5143;&#x7D20;&#x6307;&#x9488;</span></span><br><span class="line">	Bucket *pListTail;         <span class="comment">//&#x5B58;&#x50A8;&#x6570;&#x7EC4;&#x5C3E;&#x5143;&#x7D20;&#x6307;&#x9488;</span></span><br><span class="line">	Bucket **arBuckets; 		 <span class="comment">//&#x5B58;&#x50A8;hash&#x6570;&#x7EC4;</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">dtor_func_t</span> pDestructor;  <span class="comment">// &#x5728;&#x5220;&#x9664;&#x5143;&#x7D20;&#x65F6;&#x6267;&#x884C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;,&#x7528;&#x4E8E;&#x8D44;&#x6E90;&#x7684;&#x91CA;&#x653E;</span>	zend_bool persistent;  	   <span class="comment">//&#x6307;&#x51FA;&#x4E86;Bucket&#x5185;&#x5B58;&#x5206;&#x914D;&#x7684;&#x65B9;&#x5F0F;&#x3002;&#x5982;&#x679C;persisient&#x4E3A; TRUE,&#x5219;&#x4F7F;&#x7528;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x672C;&#x8EAB;&#x7684;&#x5185;&#x5B58;&#x5206;&#x914D;&#x51FD;&#x6570;&#x4E3A;Bucket&#x5206;&#x914D;&#x5185;&#x5B58;,&#x5426;&#x5219;&#x4F7F;&#x7528;PHP&#x7684;&#x5185;&#x5B58;&#x5206;&#x914D;&#x51FD;&#x6570;&#x3002;</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> nApplyCount; <span class="comment">// &#x6807;&#x8BB0;&#x5F53;&#x524D;hash Bucket&#x88AB;&#x9012;&#x5F52;&#x8BBF;&#x95EE;&#x7684;&#x6B21;&#x6570;(&#x9632;&#x6B62;&#x591A;&#x6B21;&#x9012; &#x5F52;)</span></span><br><span class="line">	zend_bool bApplyProtection; <span class="comment">// &#x6807;&#x8BB0;&#x5F53;&#x524D;hash&#x6876;&#x5141;&#x8BB8;&#x4E0D;&#x5141;&#x8BB8;&#x591A;&#x6B21;&#x8BBF;&#x95EE;,&#x4E0D;&#x5141;&#x8BB8;&#x65F6;,&#x6700;&#x591A;&#x53EA; &#x80FD;&#x9012;&#x5F52;3&#x6B21;</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">if</span> ZEND_DEBUG</span></span><br><span class="line">	<span class="keyword">int</span> inconsistent;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>bucket &#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">typedef</span> <span class="keyword">struct</span> bucket { </span><br><span class="line">		ulong h;		uint nKeyLength;		<span class="keyword">void</span> *pData; pDataPtr		<span class="keyword">void</span> *pDataPtr;</span><br><span class="line">				</span><br><span class="line">		<span class="keyword">struct</span> bucket *pListNext;</span><br><span class="line">		<span class="keyword">struct</span> bucket *pListLast; </span><br><span class="line">		<span class="keyword">struct</span> bucket *pNext; </span><br><span class="line">		<span class="keyword">struct</span> bucket *pLast;							<span class="keyword">char</span> arKey[<span class="number">1</span>]; </span><br><span class="line">} Bucket;</span><br></pre></td></tr></table></figure>
+<p><img src="/2016/03/31/php-&#x53D8;&#x91CF;&#x7ED3;&#x6784;/hashInsertRule.png" alt="logo"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/29/vim语法整理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          vim语法简单整理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/11/php内核-开篇/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">php内核-开篇</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="php-变量结构" data-title="php-变量结构" data-url="http://yoursite.com/2016/03/31/php-变量结构/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 过路人
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
