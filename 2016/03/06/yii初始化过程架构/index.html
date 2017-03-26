@@ -1,28 +1,28 @@
-<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="format-detection" content="email=no"><meta name="description"><meta name="keywords" content="Hexo, nginx, vim, php"><title>yii初始化过程架构 - 就是路过</title><link rel="stylesheet" href="/css/main_style.min.css"><link rel="icon" href="/favicon.ico"></head><body><input id="navi" type="checkbox"><ul class="main-navication"><li><a href="/"><span>Home</span></a></li><li><a href="https://github.com/adamzhoul"><span>Github</span></a></li><li><a href="https://www.v2ex.com/"><span>V2EX</span></a></li><li><a href="/tags/"><span>标签</span></a></li></ul><div class="wrapper" id="wrap"><div class="post-header"><label class="navi-button light" for="navi">MENU</label><img class="background" src="http://callfiles.ueibo.com/hexo-theme-laughing/post_background.jpg"><div class="post-title"><h1 class="title">yii初始化过程架构</h1><ul class="meta"><li><i class="icon icon-author"></i>过路人</li><li><i class="icon icon-clock"></i>2 Minutes</li><li><i class="icon icon-calendar"></i>March 5, 2016</li></ul></div></div><div class="article-content" style="max-width:800px"><pre><code class="php"><span class="comment">//&#x5E94;&#x7528;&#x5165;&#x53E3;</span>
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="format-detection" content="email=no"><meta name="description"><meta name="keywords" content="Hexo, nginx, vim, php"><title>yii初始化过程架构 - 就是路过</title><link rel="stylesheet" href="/css/main_style.min.css"><link rel="icon" href="/favicon.ico"></head><body><input id="navi" type="checkbox"><ul class="main-navication"><li><a href="/"><span>Home</span></a></li><li><a href="https://github.com/adamzhoul"><span>Github</span></a></li><li><a href="https://www.v2ex.com/"><span>V2EX</span></a></li><li><a href="/tags/"><span>标签</span></a></li></ul><div class="wrapper" id="wrap"><div class="post-header"><label class="navi-button light" for="navi">MENU</label><img class="background" src="http://callfiles.ueibo.com/hexo-theme-laughing/post_background.jpg"><div class="post-title"><h1 class="title">yii初始化过程架构</h1><ul class="meta"><li><i class="icon icon-author"></i>过路人</li><li><i class="icon icon-clock"></i>0 Minutes</li><li><i class="icon icon-calendar"></i>March 5, 2016</li></ul></div></div><div class="article-content" style="max-width:800px"><pre><code class="php"><span class="comment">//应用入口</span>
 Yii::createWebApplication($config)-&gt;run();
 </code></pre>
-<h3>&#x6D89;&#x53CA;&#x5230;&#x7684;&#x4E00;&#x4E9B;&#x6587;&#x4EF6;&#xFF1A;</h3>
+<h3>涉及到的一些文件：</h3>
 
 <p>Yii.php YiiBase.php</p>
 <p>CWebApplication.php CApplication.php CModule.php CComponent.php </p>
 <p>CHttpRequest.php CUrlManager.php</p>
 <p>CController.php CAction.php</p>
-<h4>&#x7C7B;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#xFF1A;</h4>
+<h4>类继承关系：</h4>
 
 <a id="more"></a>
-<h4>&#x521D;&#x59CB;&#x5316;&#x6D41;&#x7A0B;&#xFF1A;</h4>
+<h4>初始化流程：</h4>
 
 <ol>
-<li>&#x521B;&#x5EFA;CWebApplication&#x7C7B;&#x5BF9;&#x8C61;&#x3002;&#x8C03;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF08;&#x5B9E;&#x9645;&#x8C03;&#x7528;&#x4E86;&#x7236;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF09;&#x3002;<ol>
-<li>&#x8BBE;&#x7F6E;&#x4E00;&#x4E9B;basepath&#x8DEF;&#x5F84;&#x7B49;&#x7C7B;&#x53D8;&#x91CF;&#x3002;</li>
-<li>&#x521D;&#x59CB;&#x5316;yii&#x9884;&#x5B9A;&#x4E49;&#x6838;&#x5FC3;&#x57FA;&#x7840;&#x7EC4;&#x4EF6;&#x3002;</li>
-<li>&#x8BFB;&#x5165;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x5C06;&#x4FE1;&#x606F;&#x4FDD;&#x5B58;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x4E2D;&#x3002;</li>
-<li>preload&#x63D0;&#x524D;load&#x4E00;&#x4E9B;&#x7EC4;&#x4EF6;&#x3002;</li>
+<li>创建CWebApplication类对象。调用构造函数（实际调用了父类的构造函数）。<ol>
+<li>设置一些basepath路径等类变量。</li>
+<li>初始化yii预定义核心基础组件。</li>
+<li>读入配置文件，将信息保存到对应的数据结构中。</li>
+<li>preload提前load一些组件。</li>
 </ol>
 </li>
-<li>&#x6267;&#x884C;CWebAppliaction&#x7C7B;run&#x65B9;&#x6CD5;&#x3002;<ol>
-<li>&#x5904;&#x7406;&#x9884;&#x5B9A;&#x4E49;&#x4E8B;&#x4EF6;</li>
-<li>&#x6267;&#x884C;processRequest<br> 1) &#x8BFB;&#x5165;&#x8BBF;&#x95EE;&#x7684;url&#xFF0C;&#x901A;&#x8FC7;&#x8DEF;&#x7531;&#x7EC4;&#x4EF6;&#xFF0C;&#x83B7;&#x5F97;&#x6700;&#x7EC8;&#x7684;&#x8DEF;&#x7531;&#x3002;<br> 2) &#x901A;&#x8FC7;&#x8DEF;&#x7531;&#x786E;&#x5B9A;&#x5BF9;&#x5E94;&#x7684;controller &#x4EE5;&#x53CA;action&#x3002;<br> 3) &#x6839;&#x636E;&#x914D;&#x7F6E;&#xFF0C;&#x521B;&#x5EFA;filter&#xFF0C;&#x6267;&#x884C;filter &#x4EE5;&#x53CA; action&#x5BF9;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>执行CWebAppliaction类run方法。<ol>
+<li>处理预定义事件</li>
+<li>执行processRequest<br> 1) 读入访问的url，通过路由组件，获得最终的路由。<br> 2) 通过路由确定对应的controller 以及action。<br> 3) 根据配置，创建filter，执行filter 以及 action对应的方法。</li>
 </ol>
 </li>
 </ol>
